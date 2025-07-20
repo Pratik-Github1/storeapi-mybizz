@@ -22,6 +22,7 @@ SECRETS_FILE_MAP = {
 }
 
 secret_file = SECRETS_FILE_MAP.get(ENV_TYPE)
+print(secret_file)
 if secret_file:
     load_dotenv(dotenv_path=BASE_DIR / secret_file, override=True)
 else:
@@ -108,11 +109,11 @@ if DATABASE_ENV_TYPE == "stagging":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.getenv("DB_NAME", default=""),
-            'USER': os.getenv("DB_USER", default=""),
+            'NAME': os.getenv("DB_NAME", default="products"),
+            'USER': os.getenv("DB_USER", default="root"),
             'PASSWORD': os.getenv("DB_PASSWORD", default=""),
             'HOST': os.getenv("DB_HOST", default="localhost"),
-            'PORT': os.getenv("DB_PORT", default=3306),
+            'PORT': os.getenv("DB_PORT", default=3307),
             'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
             }
@@ -123,7 +124,7 @@ if DATABASE_ENV_TYPE == "stagging":
             'USER': os.getenv("REPLICA_USER", os.getenv("DB_USER")),
             'PASSWORD': os.getenv("REPLICA_PASSWORD", os.getenv("DB_PASSWORD")),
             'HOST': os.getenv("REPLICA_HOST", os.getenv("DB_HOST")),
-            'PORT': os.getenv("REPLICA_PORT", 3306),
+            'PORT': os.getenv("REPLICA_PORT", 3307),
             'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
             }
@@ -138,7 +139,7 @@ else:
             'USER': os.getenv("DB_USER", default=""),
             'PASSWORD': os.getenv("DB_PASSWORD", default=""),
             'HOST': os.getenv("DB_HOST", default="localhost"),
-            'PORT': os.getenv("DB_PORT", default=3306),
+            'PORT': os.getenv("DB_PORT", default=3307),
             'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
             }
@@ -149,7 +150,7 @@ else:
             'USER': os.getenv("REPLICA_USER", os.getenv("DB_USER")),
             'PASSWORD': os.getenv("REPLICA_PASSWORD", os.getenv("DB_PASSWORD")),
             'HOST': os.getenv("REPLICA_HOST", os.getenv("DB_HOST")),
-            'PORT': os.getenv("REPLICA_PORT", 3306),
+            'PORT': os.getenv("REPLICA_PORT", 3307),
             'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
             }

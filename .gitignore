@@ -1,17 +1,23 @@
-# Python cache
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 
-# Django stuff
-db.sqlite3
-*.log
+# Django migrations
+migrations/
+*/migrations/
 
-# Environment
-# .env
-# venv/
 
-# Editor configs
+# Editor files
 .vscode/
 .idea/
+*.swp
+*.swo
 
+# Ignore database files
+*.sqlite3
 
+# #Ignore others files
+# env/
+# testing_calls/
+# system_logs/
