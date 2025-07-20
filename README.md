@@ -148,11 +148,11 @@ All endpoints are currently open and do not require authentication. You can inte
 
 ---
 
-## 🔧 Project Configuration Overview
+## Project Configuration Overview
 
 This project uses a clean and modular `settings.py` structure designed for security, flexibility, and ease of deployment across environments.
 
-### 🔹 Environment Loading Flow
+### Environment Loading Flow
 
 1. `.env` is first loaded to detect the environment type (e.g., `stagging`, `production`).
 2. Based on the `ENV_TYPE`, the corresponding secrets file is loaded from:
@@ -179,7 +179,7 @@ else:
     raise Exception(f"Unknown ENV_TYPE: {ENV_TYPE}")
 ```
 
-### 🔹 Core Configs from ENV
+### Core Configs from ENV
 
 * `DEBUG` and `SECRET_KEY` values are loaded securely:
 
