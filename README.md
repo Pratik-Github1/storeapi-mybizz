@@ -20,8 +20,8 @@ A lightweight and optimized Product Management API built with Django and DRF. Su
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/storeapi-mybizz.git
-cd storeapi-mybizz
+git clone https://github.com/Pratik-Github1/storeapi-mybizz.git
+cd mybizzerp-storeapi
 ```
 
 ### 2. Install Dependencies
@@ -151,6 +151,6 @@ All endpoints are currently open and do not require authentication. You can inte
 ## 👤 Author
 
 **Pratik Kumar Pradhan**
-Feel free to connect on [LinkedIn](https://www.linkedin.com)
+Feel free to connect on [LinkedIn](https://www.linkedin.com/in/mr-pratikk/)
 
 ---
