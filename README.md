@@ -148,7 +148,7 @@ All endpoints are currently open and do not require authentication. You can inte
 
 ---
 
-## 👤 Author
+## Author
 
 **Pratik Kumar Pradhan**
 Feel free to connect on [LinkedIn](https://www.linkedin.com/in/mr-pratikk/)
