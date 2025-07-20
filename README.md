@@ -6,11 +6,11 @@ A lightweight and optimized Product Management API built with Django and DRF. Su
 
 ## Features
 
-* Create new products
-* Retrieve a list of products with search and filters
-* Retrieve product details
-* Update product information
-* Delete single or multiple products
+* Create new products  
+* Retrieve a list of products with search and filters  
+* Retrieve product details  
+* Update product information  
+* Delete single or multiple products  
 * Clean and consistent response structure
 
 ---
@@ -22,7 +22,7 @@ A lightweight and optimized Product Management API built with Django and DRF. Su
 ```bash
 git clone https://github.com/Pratik-Github1/storeapi-mybizz.git
 cd mybizzerp-storeapi
-```
+````
 
 ### 2. Install Dependencies
 
@@ -144,7 +144,58 @@ All endpoints are currently open and do not require authentication. You can inte
 
 * Python 3.13.3
 * Django 5.2x
-* Django REST Framework [ djangorestframework 3.16.0]
+* Django REST Framework \[ djangorestframework 3.16.0]
+
+---
+
+## 🔧 Project Configuration Overview
+
+This project uses a clean and modular `settings.py` structure designed for security, flexibility, and ease of deployment across environments.
+
+### 🔹 Environment Loading Flow
+
+1. `.env` is first loaded to detect the environment type (e.g., `stagging`, `production`).
+2. Based on the `ENV_TYPE`, the corresponding secrets file is loaded from:
+
+   * `.env.stagging.secrets`
+   * `.env.production.secrets`
+
+```python
+# Example flow from settings.py
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(dotenv_path=BASE_DIR / ".env")
+ENV_TYPE = os.getenv("ENV_TYPE", "stagging").lower()
+
+SECRETS_FILE_MAP = {
+    "stagging": ".env.stagging.secrets",
+    "production": ".env.production.secrets"
+}
+
+secret_file = SECRETS_FILE_MAP.get(ENV_TYPE)
+if secret_file:
+    load_dotenv(dotenv_path=BASE_DIR / secret_file, override=True)
+else:
+    raise Exception(f"Unknown ENV_TYPE: {ENV_TYPE}")
+```
+
+### 🔹 Core Configs from ENV
+
+* `DEBUG` and `SECRET_KEY` values are loaded securely:
+
+```python
+DEBUG = os.getenv('DEBUG', default=True)
+SECRET_KEY = os.getenv('SECRET_KEY')
+```
+
+* If `SECRET_KEY` is not defined, it raises an exception for safety:
+
+```python
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY not set in environment variables")
+```
+
+This ensures secrets and sensitive configs are **never hard-coded**, making the app production-ready and secure by default.
 
 ---
 
@@ -152,5 +203,3 @@ All endpoints are currently open and do not require authentication. You can inte
 
 **Pratik Kumar Pradhan**
 Feel free to connect on [LinkedIn](https://www.linkedin.com/in/mr-pratikk/)
-
----
