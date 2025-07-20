@@ -1,7 +1,3 @@
-Here is a **clean, professional, and emoji-free** version of your `README.md`:
-
----
-
 # Products API - Django REST Framework
 
 A lightweight and optimized Product Management API built with Django and DRF. Supports complete CRUD operations along with filtering, pagination, and bulk deletion features.
@@ -34,12 +30,35 @@ cd storeapi-mybizz
 pip install -r requirements.txt
 ```
 
-### 3. Apply Migrations
+### 3. Configure the Database
+
+You have two options to configure the database schema:
+
+#### Option A: Use Django's ORM
+
+Run the following commands:
 
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
+
+Make sure your model `Meta` class includes:
+
+```python
+class Meta:
+    db_table = 'products'
+    managed = True  # Enable this when using Django migrations
+```
+
+#### Option B: Use the Provided SQL Script
+
+If you prefer not to run Django migrations, execute the SQL script available inside the `mysql/` folder using any MySQL client (e.g., MySQL CLI or phpMyAdmin).
+This will manually create the required `products` table in your database.
+
+> **Important:** When using this method, set `managed = False` in your model’s `Meta` class to prevent Django from trying to manage the table schema.
+
+---
 
 ### 4. Run the Development Server
 
@@ -59,8 +78,7 @@ All endpoints are currently open and do not require authentication. You can inte
 
 ### 1. Create a Product
 
-* **Endpoint:** `POST /api/products/create`
-* **Request Body:**
+* **Endpoint:** `POST /api/create-product`
 
 ```json
 {
@@ -73,22 +91,13 @@ All endpoints are currently open and do not require authentication. You can inte
 }
 ```
 
-* **Response:**
-
-```json
-{
-  "status": true,
-  "message": "Product created successfully.",
-  "error": ""
-}
-```
-
 ---
 
 ### 2. List Products
 
-* **Endpoint:** `GET /api/products/list`
-* **Query Parameters:**
+* **Endpoint:** `GET /api/product-list`
+
+**Query Parameters:**
 
 | Parameter  | Type   | Description                    |
 | ---------- | ------ | ------------------------------ |
@@ -99,97 +108,29 @@ All endpoints are currently open and do not require authentication. You can inte
 | page       | int    | Page number                    |
 | limit      | int    | Results per page               |
 
-* **Example:**
-
-```
-GET /api/products/list?search=shirt&category=clothing&min_price=100&max_price=1000&page=1&limit=10
-```
-
-* **Response:**
-
-```json
-{
-  "count": 1,
-  "next": null,
-  "previous": null,
-  "results": [
-    {
-      "id": 3,
-      "title": "Red T-Shirt",
-      "price": 499,
-      "category": "clothing"
-    }
-  ]
-}
-```
-
 ---
 
 ### 3. Retrieve Product Details
 
-* **Endpoint:** `GET /api/products/detail?product_id=<id>`
-* **Example:** `GET /api/products/detail?product_id=3`
-* **Response:**
-
-```json
-{
-  "status": true,
-  "message": "Product details fetched successfully.",
-  "data": {
-    "id": 3,
-    "title": "Red T-Shirt",
-    "description": "Premium cotton fabric",
-    "price": 499,
-    "category": "clothing",
-    "rating_rate": 4.7,
-    "rating_count": 320
-  }
-}
-```
+* **Endpoint:** `GET /api/product-details?product_id=<id>`
 
 ---
 
 ### 4. Update Product
 
-* **Endpoint:** `PUT /api/products/update?product_id=<id>`
-* **Request Body:**
-
-```json
-{
-  "price": 550,
-  "title": "Red T-Shirt XL"
-}
-```
-
-* **Response:**
-
-```json
-{
-  "status": true,
-  "message": "Product updated successfully."
-}
-```
+* **Endpoint:** `PUT /api/update-product?product_id=<id>`
 
 ---
 
 ### 5. Delete a Single Product
 
-* **Endpoint:** `DELETE /api/products/delete?product_id=<id>`
-* **Response:**
-
-```json
-{
-  "status": true,
-  "message": "Product deleted successfully."
-}
-```
+* **Endpoint:** `DELETE /api/delete-product?product_id=<id>`
 
 ---
 
 ### 6. Bulk Delete Products
 
-* **Endpoint:** `DELETE /api/products/delete-bulk`
-* **Request Body:**
+* **Endpoint:** `DELETE /api/bulk-delete-products`
 
 ```json
 {
@@ -197,34 +138,13 @@ GET /api/products/list?search=shirt&category=clothing&min_price=100&max_price=10
 }
 ```
 
-* **Response:**
-
-```json
-{
-  "status": true,
-  "message": "3 product(s) deleted successfully."
-}
-```
-
 ---
 
 ## Tech Stack
 
-* Python 3.10+
-* Django 4.x
-* Django REST Framework
-
----
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-## Contributions
-
-Pull requests are welcome. For any significant changes, please open an issue first to discuss your proposal.
+* Python 3.13.3
+* Django 5.2x
+* Django REST Framework [ djangorestframework 3.16.0]
 
 ---
 
@@ -232,3 +152,5 @@ Pull requests are welcome. For any significant changes, please open an issue fir
 
 **Pratik Kumar Pradhan**
 Feel free to connect on [LinkedIn](https://www.linkedin.com)
+
+---
