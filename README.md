@@ -1,33 +1,32 @@
-# storeapi-mybizz
-A lightweight and optimized Product Management API built with Django and DRF. Includes full CRUD operations with filtering, pagination, and bulk deletion support.
-
-
-````markdown
-# 🛍️ Products API - Django REST Framework
-
-A lightweight and optimized Product Management API built with Django and DRF. Includes full CRUD operations with filtering, pagination, and bulk deletion support.
+Here is a **clean, professional, and emoji-free** version of your `README.md`:
 
 ---
 
-## 📦 Features
+# Products API - Django REST Framework
 
-- ✅ Create a new product
-- 🔍 List products with powerful filtering and pagination
-- 📄 Retrieve product details
-- ✏️ Update product info
-- ❌ Delete single or multiple products
-- 📊 Clean response format with consistent structure
+A lightweight and optimized Product Management API built with Django and DRF. Supports complete CRUD operations along with filtering, pagination, and bulk deletion features.
 
 ---
 
-## 🚀 Setup Instructions
+## Features
+
+* Create new products
+* Retrieve a list of products with search and filters
+* Retrieve product details
+* Update product information
+* Delete single or multiple products
+* Clean and consistent response structure
+
+---
+
+## Setup Instructions
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/products-api.git
-cd products-api
-````
+git clone https://github.com/your-username/storeapi-mybizz.git
+cd storeapi-mybizz
+```
 
 ### 2. Install Dependencies
 
@@ -42,7 +41,7 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-### 4. Run the Server
+### 4. Run the Development Server
 
 ```bash
 python manage.py runserver
@@ -50,19 +49,18 @@ python manage.py runserver
 
 ---
 
-## 🔐 API Authentication
+## API Authentication
 
-> Currently all endpoints are **open** (no auth). You can integrate Token or JWT auth as needed.
+All endpoints are currently open and do not require authentication. You can integrate Token or JWT authentication as needed.
 
 ---
 
-## 📘 API Endpoints & Usage
+## API Endpoints
 
-### 1. 📥 Create a Product
+### 1. Create a Product
 
-**URL:** `POST /api/products/create`
-
-**Request:**
+* **Endpoint:** `POST /api/products/create`
+* **Request Body:**
 
 ```json
 {
@@ -75,7 +73,7 @@ python manage.py runserver
 }
 ```
 
-**Response:**
+* **Response:**
 
 ```json
 {
@@ -87,28 +85,27 @@ python manage.py runserver
 
 ---
 
-### 2. 📃 List Products (with Filters)
+### 2. List Products
 
-**URL:** `GET /api/products/list`
+* **Endpoint:** `GET /api/products/list`
+* **Query Parameters:**
 
-**Query Parameters:**
+| Parameter  | Type   | Description                    |
+| ---------- | ------ | ------------------------------ |
+| search     | string | Search by title                |
+| category   | string | Filter by exact category match |
+| min\_price | float  | Filter by minimum price        |
+| max\_price | float  | Filter by maximum price        |
+| page       | int    | Page number                    |
+| limit      | int    | Results per page               |
 
-| Param       | Type   | Description                      |
-| ----------- | ------ | -------------------------------- |
-| `search`    | string | Search by product title          |
-| `category`  | string | Filter by category (exact match) |
-| `min_price` | float  | Minimum price filter             |
-| `max_price` | float  | Maximum price filter             |
-| `page`      | int    | Page number                      |
-| `limit`     | int    | Items per page                   |
-
-**Example:**
+* **Example:**
 
 ```
 GET /api/products/list?search=shirt&category=clothing&min_price=100&max_price=1000&page=1&limit=10
 ```
 
-**Response:**
+* **Response:**
 
 ```json
 {
@@ -120,8 +117,7 @@ GET /api/products/list?search=shirt&category=clothing&min_price=100&max_price=10
       "id": 3,
       "title": "Red T-Shirt",
       "price": 499,
-      "category": "clothing",
-      ...
+      "category": "clothing"
     }
   ]
 }
@@ -129,14 +125,11 @@ GET /api/products/list?search=shirt&category=clothing&min_price=100&max_price=10
 
 ---
 
-### 3. 📄 Retrieve Product Details
+### 3. Retrieve Product Details
 
-**URL:** `GET /api/products/detail?product_id=<id>`
-
-**Example:**
-`GET /api/products/detail?product_id=3`
-
-**Response:**
+* **Endpoint:** `GET /api/products/detail?product_id=<id>`
+* **Example:** `GET /api/products/detail?product_id=3`
+* **Response:**
 
 ```json
 {
@@ -145,18 +138,21 @@ GET /api/products/list?search=shirt&category=clothing&min_price=100&max_price=10
   "data": {
     "id": 3,
     "title": "Red T-Shirt",
-    ...
+    "description": "Premium cotton fabric",
+    "price": 499,
+    "category": "clothing",
+    "rating_rate": 4.7,
+    "rating_count": 320
   }
 }
 ```
 
 ---
 
-### 4. ✏️ Update Product
+### 4. Update Product
 
-**URL:** `PUT /api/products/update?product_id=<id>`
-
-**Request Body:**
+* **Endpoint:** `PUT /api/products/update?product_id=<id>`
+* **Request Body:**
 
 ```json
 {
@@ -165,7 +161,7 @@ GET /api/products/list?search=shirt&category=clothing&min_price=100&max_price=10
 }
 ```
 
-**Response:**
+* **Response:**
 
 ```json
 {
@@ -176,11 +172,10 @@ GET /api/products/list?search=shirt&category=clothing&min_price=100&max_price=10
 
 ---
 
-### 5. ❌ Delete a Single Product
+### 5. Delete a Single Product
 
-**URL:** `DELETE /api/products/delete?product_id=<id>`
-
-**Response:**
+* **Endpoint:** `DELETE /api/products/delete?product_id=<id>`
+* **Response:**
 
 ```json
 {
@@ -191,11 +186,10 @@ GET /api/products/list?search=shirt&category=clothing&min_price=100&max_price=10
 
 ---
 
-### 6. ❌ Bulk Delete Products
+### 6. Bulk Delete Products
 
-**URL:** `DELETE /api/products/delete-bulk`
-
-**Request Body:**
+* **Endpoint:** `DELETE /api/products/delete-bulk`
+* **Request Body:**
 
 ```json
 {
@@ -203,7 +197,7 @@ GET /api/products/list?search=shirt&category=clothing&min_price=100&max_price=10
 }
 ```
 
-**Response:**
+* **Response:**
 
 ```json
 {
@@ -214,7 +208,7 @@ GET /api/products/list?search=shirt&category=clothing&min_price=100&max_price=10
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 * Python 3.10+
 * Django 4.x
@@ -222,15 +216,15 @@ GET /api/products/list?search=shirt&category=clothing&min_price=100&max_price=10
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 🙌 Contribution
+## Contributions
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome. For any significant changes, please open an issue first to discuss your proposal.
 
 ---
 
@@ -238,10 +232,3 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 **Pratik Kumar Pradhan**
 Feel free to connect on [LinkedIn](https://www.linkedin.com)
-
-```
-
----
-
-Let me know once your GitHub repo is ready, and I’ll help you tailor the repo name and license reference too.
-```
